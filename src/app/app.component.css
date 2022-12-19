@@ -1,0 +1,11 @@
+body,
+html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.router-container {
+    height: calc(100% - 8vh);
+    background-color: rgb(230, 207, 239);
+}

@@ -1,0 +1,62 @@
+.main-container {
+    background-image: url('../../assets/images/main-bg.png');
+    background-size: cover;
+    height: calc(100% - 8vh);
+    flex-direction: column;
+}
+
+.box-container {
+    height: 68%;
+    width: 56%;
+    background-color: #064a5778;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    color: white;
+}
+
+#forgotModal form {
+    color: rgb(0, 136, 178)
+}
+
+#forgotModal .close {
+    color: rgb(102, 102, 102);
+    border: none;
+    background-color: transparent;
+    font-size: 29px;
+    line-height: .5;
+}
+
+.fp a {
+    color: white !important;
+    text-decoration: none;
+}
+
+.fp a:hover {
+    color: rgb(1, 89, 156) !important;
+}
+
+
+/* .errorlog {
+    display: none;
+} */
+
+.btn:hover {
+    border: 1px solid rgba(2, 2, 88, 0.655);
+}
+
+.btn {
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.spinner-border {
+    font-size: 10px;
+    height: 21px;
+    width: 21px;
+}

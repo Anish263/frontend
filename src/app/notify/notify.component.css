@@ -1,0 +1,20 @@
+.hide {
+    /* display: none; */
+    opacity: 0;
+    /* transition: all 0.5s linear; */
+}
+
+#message {
+    position: absolute;
+    top: 74px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transition: all 0.5s linear;
+    z-index: 999;
+}
+
+.show {
+    /* display: block; */
+    opacity: 1;
+    /* transition: all 0.5s linear; */
+}

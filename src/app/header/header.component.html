@@ -1,0 +1,46 @@
+<nav class="navbar navbar-light navbar-expand-lg px-3" style="background-color: rgb(196, 199, 205);">
+    <app-notify [msg]="resetMsg"></app-notify>
+    <a class="navbar-brand" href="#">
+        <img src="../../assets/images/tweet.png" alt="" style="object-fit: contain; width: 110px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <span *ngIf="this.userService.isLoggedIn" class="username-display">Hi {{this.userService.currentUserInfo}}</span>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-item nav-link" routerLink="tweet" *ngIf="this.userService.isLoggedIn" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>All tweets</a>
+            <a class="nav-item nav-link" *ngIf="this.userService.isLoggedIn" routerLink="users" routerLinkActive="active">Users</a>
+            <a class="nav-item nav-link" *ngIf="this.userService.isLoggedIn" routerLink="mytweet" routerLinkActive="active">My Tweets</a>
+            <a class="nav-item nav-link" *ngIf="this.userService.isLoggedIn" data-toggle="modal" data-target="#resetModal" style="cursor: pointer;">Change Password</a>
+            <a class="nav-item nav-link" (click)="logout()" *ngIf="this.userService.isLoggedIn" style="cursor: pointer;">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div id="resetModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-primary">RESET PASSWORD</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="resetForm">
+                    <div class="row">
+                        <h6>New Password:</h6>
+                        <input type="password" formControlName='password' required autocomplete="on">
+                    </div>
+                    <div class="row">
+                        <h6>Confirm Password:</h6>
+                        <input type="password" formControlName="confirmPassword" required autocomplete="on">
+                    </div>
+                    <div class="text-danger small" *ngIf="resetForm.get('password').value!=resetForm.get('confirmPassword').value && resetForm.get('password').touched && resetForm.get('confirmPassword').dirty">Password does not match</div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" value="submit" data-dismiss="modal" (click)="resetPassword(resetForm)" [disabled]="!resetForm.valid && resetForm.get('password').value!=resetForm.get('confirmPassword').value">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

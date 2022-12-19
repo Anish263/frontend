@@ -1,0 +1,16 @@
+<div class="full p-4">
+    <div class="spinner-border text-primary" role="status" *ngIf="loading">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="row" *ngIf="!loading">
+        <div class="col-4 mb-3" *ngFor="let user of users; let i = index">
+            <div class="card">
+                <img class="card-img-top" src="../../assets/images/profile.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{user.firstName + ' '+ user.lastName}}</h5>
+                    <a [routerLink]="['/usertweet',user.email]" class="card-link" style="text-decoration: none;">View All tweets</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

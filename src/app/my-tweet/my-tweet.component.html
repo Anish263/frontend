@@ -1,0 +1,83 @@
+<div class="full p-4">
+
+    <div class="row ml-1 mt-3 mb-3">
+        <div class="col-lg-12 p-2 pb-5" *ngFor="let data of tweet;let i = index">
+            <div class="card postCard  ml-5 mt-0">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            <img src="../../assets/images/pngegg.png" class=" ml-5 mr-2" alt="user-img" style="width: auto; height: 60px;">
+                            <span class="tweet-userName">@{{data.firstName}}</span>
+                        </div>
+                        <div class="col action-btn-container">
+                            <div class="ml-2 mt-2 mb-2 timeStamp" style="text-align: right;"><span class="pl-5 td">{{data.tweetDate}}</span></div>
+                            <button type="button" class="btn btn-outline-danger mr-4" (click)="delete(data.tweetId)">Delete</button>
+                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#editModal" (click)="update(data.tweetId)">Edit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2 p-4">
+                    <span class="col-12 tweet"> {{data.tweetText}} </span>
+                    <div class="row actions">
+                        <div class="col-6 like-section">
+                            <div class="like">
+                                <a *ngIf="!data.likes.includes(userName)" (click)="likeTweet(data.tweetId)" class="fs-blue link"><i class="fa fa-thumbs-up fs-blue"></i>Like</a>
+                                <a *ngIf="data.likes.includes(userName)" (click)="unlike(data.tweetId)" class="fs-blue link"><i class="fa fa-thumbs-down fs-blue"></i>UnLike</a>
+                            </div>
+                            <div *ngIf="data.likes.length > 0" class="text-muted">
+                                {{data.likes.length}} ppl liked
+                            </div>
+                        </div>
+                        <div class="col-6 reply">
+                            <a href="javascript:void(0);" (click)="reply[i]=true" class="pl-5 mb-2"><i class="fa fa-reply fs-blue"></i>Reply</a>
+                            <div class="row mb-3 ml-2" *ngIf="reply[i]">
+                                <textarea class="col-8 textArea" id="replyDesc" name="replyDesc" [(ngModel)]='replyDesc' placeholder="Enter your Reply" rows="2" cols="50"></textarea>
+                                <span class="col-2"><button class="postCommentButton mt-2" type="submit" value="submit" [disabled]="!(this.replyDesc.length > 0)"
+                    (click)="postcomment(data.tweetId,i)"><i class="material-icons send">send</i></button>
+            </span>
+                            </div>
+                            <div *ngIf="data.comments?.length > 0" class="card comment mr-3 mb-3">
+                                <div *ngFor="let comment of data.comments;">
+                                    <div class="metadata">
+                                        <div class="ml-5 username">@{{comment.username}}
+                                        </div>
+                                        <span class="pl-5 td timeStamp">{{comment.date}}</span>
+                                    </div>
+                                    <div class="ml-5 reply"> {{comment.comment}} </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Tweet</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="updateForm">
+                        <div class="row mb-3">
+                            <span class="fname">Message</span>
+                            <span><input type="text" formControlName="tweetText" width="30px" class="fuser form-control" autocomplete="tweetText"></span>
+                            <div class="errmsg">
+                                <span [style.visibility]="'hidden'" class="text-danger"></span>
+                                <span class="text-danger" *ngIf="!updateForm.get('tweetText').valid && updateForm.get('tweetText').touched">Enter
+                                  message</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="fpbtn text-white btn btn-primary" value="submit" data-dismiss="modal" (click)="updateTweet(updateForm)" [disabled]="!updateForm.valid">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>

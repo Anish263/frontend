@@ -1,0 +1,58 @@
+.full {
+    background-color: rgb(238, 252, 255);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 10px;
+}
+
+form .mb-3 {
+    width: 100%;
+}
+
+form button {
+    width: fit-content;
+    margin-top: 10px;
+}
+
+.tweet-userName {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.metadata {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    font-size: 12px;
+    color: #808080c4;
+}
+
+.comment {
+    padding: 14px;
+}
+
+.reply {
+    font-size: 15px;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.action-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.timeStamp {
+    margin-right: 10px;
+}
+
+.btn-outline-danger {
+    margin-right: 10px;
+}

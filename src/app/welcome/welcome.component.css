@@ -1,0 +1,54 @@
+.full{
+    background-image: url('https://optinmonster.com/wp-content/uploads/2018/08/how-to-create-a-follow-us-on-twitter-popup-with-optinmonster-2.png');
+    background-position: center;
+    height: 700px;
+    background-size: cover;
+
+}
+
+.logincard{
+    margin-left: 150px;
+    margin-top: 200px;
+    height:70px;
+    width: 200px;
+    border: 1px solid #3371f8;
+    background-color: #2f7bdf;
+    background-position: 60% 5%;
+    color: white;
+}
+
+.signupcard{
+    margin-left: 150px;
+   margin-top: 50px;
+    height:70px;
+    width: 200px;
+    border: 1px solid #3371f8;
+    background-color: #2f7bdf;
+    /* background-color: rgb(2, 158, 248) !important; 
+    background-image: url('https://webgradients.com/public/webgradients_png/091%20Eternal%20Constance.png');*/
+    background-position: 60% 5%;
+}
+h2{
+    text-align: center;
+    font-family:Garamond;
+}
+
+h3{
+    text-align: center;
+    font-family:Garamond;
+    /* text-shadow: 2px 1px ; */
+}
+h4{
+    font-size: 55px;
+    color: white !important;
+    text-shadow: 1px 1px ;
+    margin-top: 10px;
+    margin-left: -5px;
+}
+
+.card:hover {
+    /* box-shadow: 15px 15px 15px 10px rgba(245, 240, 240, 0.2); */
+    box-shadow: 10px 10px 10px rgba(11, 64, 163, 0.2),10px 10px 10px rgba(165, 161, 184, 0.2);    
+    border-radius: 15px;
+    
+}

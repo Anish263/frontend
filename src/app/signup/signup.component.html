@@ -1,0 +1,85 @@
+<div class="main-container h-100 d-flex align-items-center justify-content-center">
+    <div class="box-container">
+        <h2 class="text-white mb-3">Sign Up</h2>
+        <form [formGroup]="signupForm">
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <div class="">
+                        <input type="text" class="form-control" formControlName='firstName' id="firstName" placeholder="First Name">
+                        <span class="text-danger" *ngIf="!signupForm.get('firstName').valid && signupForm.get('firstName').touched">Enter First Name</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <div class="">
+                        <input type="text" class="form-control" formControlName='lastName' id="lastName" placeholder="Last Name">
+                        <span class="text-danger" *ngIf="!signupForm.get('lastName').valid && signupForm.get('lastName').touched">Enter Last Name</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="contactNumber" class="col-form-label">Contact Number</label>
+                    <div class="">
+                        <input type="text" class="form-control" formControlName='contactNum' id="contactNumber" placeholder="Contact Number">
+                        <span class="text-danger" *ngIf="(signupForm.get('contactNum').hasError('maxlength') || signupForm.get('contactNum').hasError('minlength')) && signupForm.get('contactNum').touched">
+                          Contact Number should be 10 digits</span>
+                        <span class="text-danger" *ngIf="!signupForm.get('contactNum').valid && signupForm.get('contactNum').touched">Enter
+                          Contact Number
+                  </span>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="email" class="col-form-label">Email</label>
+                    <div class="">
+                        <input type="email" class="form-control" formControlName='email' id="email" placeholder="email">
+                        <span class="text-danger" *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">Enter
+                          Email</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="password" class="col-form-label">Password</label>
+                    <div class="">
+                        <input type="password" class="form-control" formControlName='password' id="password">
+                        <span class="text-danger" *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="cnfPassword" class="col-form-label">Confirm Password</label>
+                    <div class="">
+                        <input type="password" class="form-control" formControlName='confirmPassword' id="cnfPassword">
+                        <span class="text-danger" *ngIf="!signupForm.get('confirmPassword').valid && signupForm.get('confirmPassword').touched">
+                          Re-Enter
+                          Password</span>
+                        <span *ngIf="signupForm.get('confirmPassword').value!=signupForm.get('password').value && signupForm.get('confirmPassword').dirty">
+                          Password does not match</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mb-3 row">
+                <span><button class="btn btn-primary text-white" type="button" value="submit" (click)="signupSubmit(signupForm)" [disabled]="!signupForm.valid" data-toggle="modal" data-target="#regModal"><b>REGISTER</b></button></span>
+            </div>
+            <div class="fp"><a routerLink="/login">Already a User ? Click here to SignIn</a></div>
+        </form>
+    </div>
+</div>
+
+<div id="regModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                {{registerMsg}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" *ngIf="registerMsg=='Registration successful. Please Login!'" routerLink="/login" class="close" data-dismiss="modal">Login</button>
+                <button type="button" class="close" data-dismiss="modal" *ngIf="registerMsg!='Registration successful. Please Login!'">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="full p-4">
+    <div class="row">
+        <div class="col-3">
+            <img src="../../assets/images/profile.png" class="rounded mx-auto d-block img-thumbnail" alt="profile image">
+        </div>
+        <div class="col-9">
+            <div class="card">
+                <div class="card-header">
+                    Create Tweet
+                </div>
+                <form [formGroup]="postTweetForm">
+                    <div class="input-group">
+                        <textarea class="form-control" formControlName='tweetDes' placeholder="Enter your Tweet" rows="5" cols="50"></textarea>
+                    </div>
+                    <!-- <textarea class="textBox col-8" name="tweetDes" formControlName='tweetDes' placeholder="Enter your Tweet"
+                    rows="2" cols="50"></textarea> -->
+                    <button class="btn btn-primary" type="submit" value="submit" (click)="posttweet(postTweetForm)" [disabled]="!postTweetForm.valid || posting">
+                      <div class="spinner-border text-light" role="status" *ngIf="posting">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <span *ngIf="!posting">Post</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row ml-1 mt-3 mb-3">
+        <div class="spinner-border text-primary" role="status" *ngIf="loading">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div *ngIf="!loading">
+            <div class="col-lg-12 p-2 pb-5" *ngFor="let data of ress;let i = index">
+                <div class="card postCard  ml-5 mt-0">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <img src="../../assets/images/pngegg.png" class=" ml-5 mr-2" alt="user-img" style="width: auto; height: 60px;">
+                                <span class="tweet-userName">@{{data.firstName}}</span>
+                            </div>
+                            <div class="col">
+                                <div class="ml-2 mt-2 mb-2 timeStamp" style="text-align: right;"><span class="pl-5 td">{{data.tweetDate}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2 p-4">
+                        <span class="col-12 tweet"> {{data.tweetText}} </span>
+                        <div class="row actions">
+                            <div class="col-6 like-section">
+                                <div class="like">
+                                    <a routerLink="/tweet" *ngIf="!data.likes.includes(userName)" (click)="likeTweet(data.tweetId)" class="fs-blue"><i class="fa fa-thumbs-up fs-blue"></i>Like</a>
+                                    <a routerLink="/tweet" *ngIf="data.likes.includes(userName)" (click)="unlike(data.tweetId)"><i class="fa fa-thumbs-down fs-blue"></i>UnLike</a>
+                                </div>
+                                <div *ngIf="data.likes.length > 0" class="text-muted">
+                                    {{data.likes.length}} ppl liked
+                                </div>
+                            </div>
+                            <div class="col-6 reply">
+                                <a href="javascript:void(0);" (click)="reply[i]=true" class="pl-5 mb-2"><i class="fa fa-reply fs-blue"></i>Reply</a>
+                                <div class="row mb-3 ml-2" *ngIf="reply[i]">
+                                    <textarea class="col-8 textArea" id="replyDesc" name="replyDesc" [(ngModel)]='replyDesc' placeholder="Enter your Reply" rows="2" cols="50"></textarea>
+                                    <span class="col-2"><button class="postCommentButton mt-2" type="submit" value="submit" [disabled]="!(this.replyDesc.length > 0)"
+                            (click)="postcomment(data.tweetId,i)"><i class="material-icons send">send</i></button>
+                    </span>
+                                </div>
+                                <div *ngIf="data.comments?.length > 0" class="card comment mr-3 mb-3">
+                                    <div *ngFor="let comment of data.comments;">
+                                        <div class="metadata">
+                                            <div class="ml-5 username">@{{comment.username}}
+                                            </div>
+                                            <span class="pl-5 td timeStamp">{{comment.date}}</span>
+                                        </div>
+                                        <div class="ml-5 reply"> {{comment.comment}} </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
